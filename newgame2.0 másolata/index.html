@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Pénz Nyomtató</title>
+        <link rel="shortcut icon" type="image/jpg" href="képek/shortcut_icon.jpg">
+    </head>
+
+    
+
+    <body>
+       
+            <p>Készítette: Ferenc Studio</p>
+            <p>Verzió: test</p>
+            <p>Pénz: <span id="score">0</span></p>
+            <img src="képek/money_icon.png" height="240" width="256" onclick="addToScore(1)">
+
+            <button onclick="buyCursor()">basic_clicker [<span id="cursorcost">10</span>] -- <span id="cursors">0</span></button>
+            <p>Fejlesztői Konzol:</p>
+            <input type="text" id="devconsole" placeholder="Írja be a parancsot..." value="">
+            <button onclick="scoreCommand()" id="cheatbtn">get_code</button>
+            <link rel="stylesheet" href="style.css">
+
+        
+    </body>
+
+    <script>
+
+        
+
+        
+        var score = 0;
+        var cursorcost = 10;
+        var cursors = 0;
+
+        document.getElementById("score").innerHTML = score;
+
+        function addToScore(amount) {
+            score = score + amount;
+            document.getElementById("score").innerHTML = score;
+
+        }
+        function buyCursor() {
+            if (score >= cursorcost) {
+                score = score - cursorcost;
+                cursors = cursors + 1;
+                cursorcost = Math.round(cursorcost * 1.15);
+
+                document.getElementById("score").innerHTML = score;
+                document.getElementById("cursorcost").innerHTML = cursorcost;
+                document.getElementById("cursors").innerHTML = cursors;
+            }
+        }
+        function scoreCommand() {
+            var str = document.getElementById("devconsole").value;
+            if (str == "0ea10d3d-8f0c-43d3") {
+              addToScore(10000000);
+            }
+            
+                
+        }
+        
+        function buildingCommand() {
+            
+        }
+
+        setInterval (function() {
+            score = score + cursors * 1;
+            document.getElementById("score").innerHTML = score;
+        }, 1000); //1000ms = 1 sec
+    </script>
+</html>
+
+
+
+
+
